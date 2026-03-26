@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Appointment Manager</title>
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -46,23 +46,22 @@
 <th>Date</th>
 <th>Time</th>
 <th>Purpose</th>
+<th>Status</th>
 <th>Actions</th>
 </tr>
 
 {% for a in appointments %}
 
 <tr>
-<td>{{a.name}}</td>
-<td>{{a.date}}</td>
-<td>{{a.time}}</td>
-<td>{{a.purpose}}</td>
+<td>{{ a.user.name }}</td>
+<td>{{ a.datetime.strftime("%Y-%m-%d") }}</td>
+<td>{{ a.datetime.strftime("%H:%M") }}</td>
+<td>{{ a.purpose }}</td>
+<td>{{ a.status }}</td>
 
 <td>
-
 <a href="/update/{{a._id}}">Edit</a>
-
 <a href="/delete/{{a._id}}" onclick="return confirm('Delete appointment?')">Delete</a>
-
 </td>
 
 </tr>

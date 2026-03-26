@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Update Appointment</title>
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -13,13 +13,13 @@
 
 <form action="/update/{{appointment._id}}" method="POST">
 
-<input type="text" name="name" value="{{appointment.name}}" required>
+<input type="text" name="name" value="{{ appointment.user.name }}" required>
 
-<input type="date" name="date" value="{{appointment.date}}" required>
+<input type="date" name="date" value="{{ appointment.datetime.strftime('%Y-%m-%d') }}" required>
 
-<input type="time" name="time" value="{{appointment.time}}" required>
+<input type="time" name="time" value="{{ appointment.datetime.strftime('%H:%M') }}" required>
 
-<input type="text" name="purpose" value="{{appointment.purpose}}" required>
+<input type="text" name="purpose" value="{{ appointment.purpose }}" required>
 
 <button type="submit">Update</button>
 
