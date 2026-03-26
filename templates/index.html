@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Appointment Manager</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Appointment Management System</h1>
+
+<h2>Add Appointment</h2>
+
+<form action="/add" method="POST">
+
+<input type="text" name="name" placeholder="Name" required>
+
+<input type="date" name="date" required>
+
+<input type="time" name="time" required>
+
+<input type="text" name="purpose" placeholder="Purpose" required>
+
+<button type="submit">Add</button>
+
+</form>
+
+<h2>Search Appointment</h2>
+
+<form action="/search" method="POST">
+
+<input type="text" name="keyword" placeholder="Search by name">
+
+<button type="submit">Search</button>
+
+</form>
+
+<h2>Appointment List</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Date</th>
+<th>Time</th>
+<th>Purpose</th>
+<th>Actions</th>
+</tr>
+
+{% for a in appointments %}
+
+<tr>
+<td>{{a.name}}</td>
+<td>{{a.date}}</td>
+<td>{{a.time}}</td>
+<td>{{a.purpose}}</td>
+
+<td>
+
+<a href="/update/{{a._id}}">Edit</a>
+
+<a href="/delete/{{a._id}}" onclick="return confirm('Delete appointment?')">Delete</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
